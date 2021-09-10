@@ -23,3 +23,4 @@ npx hardhat compile
 npx hardhat test
 ```
 
+Inspiration from the paper: https://www.usenix.org/system/files/sec19-torres.pdf
